@@ -56,7 +56,7 @@ func _process(delta):
 				path.curve.set_point_position(1, ceil(hold_time * 5) * diagonal_dist)
 				path.curve.set_point_in(1, ceil(hold_time * 5) * diagonal_in)
 
-				if path.to_global(path.curve.get_point_position(1)).y < camera.global_position.y - camera.get_viewport_rect().size.y / 3:
+				if path.to_global(path.curve.get_point_position(1)).y < camera.global_position.y - camera.get_viewport_rect().size.y / 3 or path.to_global(path.curve.get_point_position(1)).x > camera.global_position.x + camera.get_viewport_rect().size.x / 3:
 					camera.global_position = path.to_global(path.curve.get_point_position(1))
 		State.JUMP:
 			if path_follow_true_progress >= 0.8: # Check if misses path
