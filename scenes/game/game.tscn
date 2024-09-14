@@ -1,0 +1,56 @@
+[gd_scene load_steps=5 format=3 uid="uid://cs41fswm3lnnm"]
+
+[ext_resource type="Script" path="res://scenes/game/game.gd" id="1_o45cd"]
+[ext_resource type="PackedScene" uid="uid://h05lkjeht4j3" path="res://entities/nian/nian.tscn" id="2_63crt"]
+[ext_resource type="PackedScene" uid="uid://dgew1je8vd7ds" path="res://scenes/map/map.tscn" id="2_tehh8"]
+
+[sub_resource type="Curve2D" id="Curve2D_ivs61"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, -900, -2700, 0, 0, 3050, -1760)
+}
+point_count = 2
+
+[node name="Game" type="Node2D" node_paths=PackedStringArray("dragon_bean", "path", "path_follow", "tilemap", "camera")]
+script = ExtResource("1_o45cd")
+dragon_bean = NodePath("Map/Path2D/PathFollow2D/nian")
+path = NodePath("Map/Path2D")
+path_follow = NodePath("Map/Path2D/PathFollow2D")
+tilemap = NodePath("Map")
+camera = NodePath("Camera2D")
+
+[node name="Map" parent="." instance=ExtResource("2_tehh8")]
+layer_0/tile_data = PackedInt32Array(589820, 5, 0, 589819, 1, 0, 524283, 1, 0, 655355, 5, 0, 589818, 1, 0, 524282, 1, 0, 655354, 1, 0, 458744, 4, 0, 524280, 4, 0, 589816, 4, 0, 589815, 4, 0, 458746, 1, 0, 393209, 4, 0, 393210, 4, 0, 655352, 1, 0, 589817, 1, 0, 720889, 1, 0, 655353, 1, 0, 524281, 1, 0, 458745, 4, 0, 720890, 1, 0, 458747, 5, 0, 720891, 5, 0, 655356, 5, 0, 786427, 5, 0, 786426, 5, 0)
+
+[node name="Path2D" type="Path2D" parent="Map"]
+z_index = 1
+y_sort_enabled = true
+position = Vector2(1525, 2114)
+curve = SubResource("Curve2D_ivs61")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Map/Path2D"]
+rotates = false
+loop = false
+
+[node name="nian" parent="Map/Path2D/PathFollow2D" instance=ExtResource("2_63crt")]
+scale = Vector2(-0.4, 0.4)
+
+[node name="NavAgent" type="NavigationAgent2D" parent="Map/Path2D"]
+path_desired_distance = 0.1
+target_desired_distance = 0.1
+path_postprocessing = 1
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(610, 828.88)
+position_smoothing_enabled = true
+position_smoothing_speed = 3.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Camera2D"]
+layer = -1
+
+[node name="ColorRect" type="ColorRect" parent="Camera2D/CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.705882, 0.705882, 0.529412, 1)
