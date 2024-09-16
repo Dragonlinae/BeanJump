@@ -46,7 +46,7 @@ func _process(delta):
 				path.global_position = nav_agent.target_position
 				camera.global_position = path.global_position
 				path.scale.x = facing_dir * abs(path.scale.x)
-				dragon_bean.scale.x = -abs(dragon_bean.scale.x)
+				dragon_bean.scale.x = abs(dragon_bean.scale.x)
 		State.CELEBRATE:
 			pass
 		State.CROUCH:
@@ -125,9 +125,9 @@ func _process(delta):
 			camera.global_position = path.global_position
 
 			if direction.x > 0:
-				dragon_bean.scale.x = -abs(dragon_bean.scale.x)
-			else:
 				dragon_bean.scale.x = abs(dragon_bean.scale.x)
+			else:
+				dragon_bean.scale.x = -abs(dragon_bean.scale.x)
 
 		State.CELEBRATE:
 			path_follow_true_progress = 1
