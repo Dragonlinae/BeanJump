@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="BeanJump"
-run/main_scene="res://scenes/game/game.tscn"
+run/main_scene="res://scenes/title/title.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://icon.png"
 
