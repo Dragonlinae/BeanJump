@@ -1,0 +1,40 @@
+[gd_scene load_steps=3 format=3 uid="uid://cfdfvpi6bpii8"]
+
+[ext_resource type="Theme" uid="uid://bts8fppnyqfl8" path="res://scenes/score/score.tres" id="1_t5sn8"]
+[ext_resource type="Script" path="res://scenes/score/score.gd" id="1_xhb6y"]
+
+[node name="Score" type="CanvasLayer" node_paths=PackedStringArray("score_label")]
+script = ExtResource("1_xhb6y")
+score_label = NodePath("Control/Node/ColorRect/RichTextLabel")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 0
+rotation = -0.523599
+
+[node name="Node" type="Node2D" parent="Control"]
+skew = -0.523599
+
+[node name="ColorRect" type="ColorRect" parent="Control/Node"]
+offset_left = -1145.0
+offset_top = -549.0
+offset_right = 1000.0
+offset_bottom = 284.0
+color = Color(0.505882, 0.807843, 0.423529, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control/Node/ColorRect"]
+offset_left = 908.217
+offset_top = 20.2168
+offset_right = 1384.22
+offset_bottom = 164.217
+theme = ExtResource("1_t5sn8")
+text = "SCORE:0"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0

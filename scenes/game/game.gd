@@ -5,6 +5,8 @@ extends Node2D
 @export var path_follow: PathFollow2D = null
 @export var tilemap: TileMap = null
 @export var camera: Camera2D = null
+@export var score: CanvasLayer = null
+@export var end_screen: CanvasLayer = null
 
 var State
 var hold_time: float = 0
@@ -13,6 +15,7 @@ var last_fall_state: int = 0
 var end_tiles: Array = [] # No queues sadge. // TODO: Replace with a circular array for that tiny boost
 var nav_agent: NavigationAgent2D = null
 var facing_dir: int = 1
+var lost: bool = false
 
 const diagonal_dist: Vector2 = Vector2(305, -176)
 const diagonal_in: Vector2 = Vector2(-90, -270)
@@ -63,6 +66,7 @@ func _process(delta):
 				var tile_pos = tilemap.local_to_map(path.position + path.curve.get_point_position(1) * path.scale)
 				if tilemap.get_cell_source_id(0, tile_pos) == -1:
 					dragon_bean.state = State.FALL
+					lost = true
 				else:
 					dragon_bean.state = State.JUMPEND
 		State.JUMPEND:
@@ -73,42 +77,48 @@ func _process(delta):
 		State.SPLASH:
 			pass
 		State.END:
-			path.z_index = 1
-			path_follow_true_progress = 0
-			path_follow.progress_ratio = 0
-			path_follow.rotates = false
-			path_follow.rotation_degrees = 0
-			path_follow.v_offset = 0
+			if not lost:
+				path.z_index = 1
+				path_follow_true_progress = 0
+				path_follow.progress_ratio = 0
+				path_follow.rotates = false
+				path_follow.rotation_degrees = 0
+				path_follow.v_offset = 0
 
-			# Reset path via tilemap to prevent accumulation of error in position
-			path.position = tilemap.map_to_local(tilemap.local_to_map(path.position + path.curve.get_point_position(1) * path.scale)) + Vector2(0, 1 - tilemap.tile_set.tile_size.y / 2.0)
-			path.scale.x = abs(path.scale.x)
+				# Reset path via tilemap to prevent accumulation of error in position
+				path.position = tilemap.map_to_local(tilemap.local_to_map(path.position + path.curve.get_point_position(1) * path.scale)) + Vector2(0, 1 - tilemap.tile_set.tile_size.y / 2.0)
+				path.scale.x = abs(path.scale.x)
 
-			var to_remove = 0
+				var to_remove = 0
 
-			# Determine which island got landed on
-			for i in range(end_tiles.size()):
-				var tile = end_tiles[i]["pos"]
-				nav_agent.target_position = tilemap.to_global(tilemap.map_to_local(tile) + Vector2(0, 1 - tilemap.tile_set.tile_size.y / 2.0))
-				if not nav_agent.is_target_reachable():
-					to_remove = i
-				else:
-					to_remove = i
-					break
+				# Determine which island got landed on
+				for i in range(end_tiles.size()):
+					var tile = end_tiles[i]["pos"]
+					nav_agent.target_position = tilemap.to_global(tilemap.map_to_local(tile) + Vector2(0, 1 - tilemap.tile_set.tile_size.y / 2.0))
+					if not nav_agent.is_target_reachable():
+						to_remove = i
+					else:
+						to_remove = i
+						break
 
-			for i in range(to_remove):
+				for i in range(to_remove):
+					end_tiles.remove_at(0)
+
+				while end_tiles.size() < 11:
+					end_tiles.append(tilemap.create_island(tilemap.map_to_local(end_tiles[end_tiles.size() - 1]["pos"]), end_tiles[end_tiles.size() - 1]["dir"]))
+
+				facing_dir = end_tiles[0]["dir"]
 				end_tiles.remove_at(0)
 
-			while end_tiles.size() < 11:
-				end_tiles.append(tilemap.create_island(tilemap.map_to_local(end_tiles[end_tiles.size() - 1]["pos"]), end_tiles[end_tiles.size() - 1]["dir"]))
+				score.add_score(to_remove + 1)
+				
+				camera.global_position = path.global_position
 
-			facing_dir = end_tiles[0]["dir"]
-			end_tiles.remove_at(0)
-			
-			camera.global_position = path.global_position
-
-			dragon_bean.state = State.WALK
-			pass
+				dragon_bean.state = State.WALK
+			else:
+				dragon_bean.visible = false
+				end_screen.play_end()
+				await get_tree().create_timer(5).timeout
 		State.INTRO:
 			pass
 

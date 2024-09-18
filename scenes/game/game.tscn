@@ -1,9 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://cs41fswm3lnnm"]
+[gd_scene load_steps=8 format=3 uid="uid://cs41fswm3lnnm"]
 
 [ext_resource type="Script" path="res://scenes/game/game.gd" id="1_o45cd"]
 [ext_resource type="PackedScene" uid="uid://h05lkjeht4j3" path="res://entities/nian/nian.tscn" id="2_63crt"]
 [ext_resource type="PackedScene" uid="uid://dgew1je8vd7ds" path="res://scenes/map/map.tscn" id="2_tehh8"]
 [ext_resource type="PackedScene" uid="uid://dmxb8c25arx31" path="res://scenes/title/reveal_transition.tscn" id="4_1o788"]
+[ext_resource type="PackedScene" uid="uid://cfdfvpi6bpii8" path="res://scenes/score/score.tscn" id="5_f1hal"]
+[ext_resource type="PackedScene" uid="uid://duvxrwr3fn0j1" path="res://scenes/end/end.tscn" id="6_2thgq"]
 
 [sub_resource type="Curve2D" id="Curve2D_ivs61"]
 _data = {
@@ -11,13 +13,15 @@ _data = {
 }
 point_count = 2
 
-[node name="Game" type="Node2D" node_paths=PackedStringArray("dragon_bean", "path", "path_follow", "tilemap", "camera")]
+[node name="Game" type="Node2D" node_paths=PackedStringArray("dragon_bean", "path", "path_follow", "tilemap", "camera", "score", "end_screen")]
 script = ExtResource("1_o45cd")
 dragon_bean = NodePath("Map/Path2D/PathFollow2D/nian")
 path = NodePath("Map/Path2D")
 path_follow = NodePath("Map/Path2D/PathFollow2D")
 tilemap = NodePath("Map")
 camera = NodePath("Camera2D")
+score = NodePath("Camera2D/Score")
+end_screen = NodePath("Camera2D/End")
 
 [node name="Map" parent="." instance=ExtResource("2_tehh8")]
 layer_0/tile_data = PackedInt32Array(589820, 5, 0, 589819, 1, 0, 524283, 1, 0, 655355, 5, 0, 589818, 1, 0, 524282, 1, 0, 655354, 1, 0, 458744, 4, 0, 524280, 4, 0, 589816, 4, 0, 589815, 4, 0, 458746, 1, 0, 393209, 4, 0, 393210, 4, 0, 655352, 1, 0, 589817, 1, 0, 720889, 1, 0, 655353, 1, 0, 524281, 1, 0, 458745, 4, 0, 720890, 1, 0, 458747, 5, 0, 720891, 5, 0, 655356, 5, 0, 786427, 5, 0, 786426, 5, 0)
@@ -56,3 +60,8 @@ grow_vertical = 2
 color = Color(0.705882, 0.705882, 0.529412, 1)
 
 [node name="RevealTransition" parent="Camera2D" instance=ExtResource("4_1o788")]
+layer = 10
+
+[node name="Score" parent="Camera2D" instance=ExtResource("5_f1hal")]
+
+[node name="End" parent="Camera2D" instance=ExtResource("6_2thgq")]

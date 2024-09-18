@@ -1,0 +1,11 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://bts8fppnyqfl8"]
+
+[ext_resource type="FontFile" uid="uid://bk3fgj4gg5b8a" path="res://assets/RobotoMono-VariableFont_wght.ttf" id="1_tvu6k"]
+
+[sub_resource type="FontVariation" id="FontVariation_gqgwv"]
+base_font = ExtResource("1_tvu6k")
+variation_embolden = 2.0
+
+[resource]
+default_font = SubResource("FontVariation_gqgwv")
+default_font_size = 108
