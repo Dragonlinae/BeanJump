@@ -29,7 +29,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [0]
+"values": [9]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -70,7 +70,7 @@ tracks/4/keys = {
 
 [sub_resource type="Animation" id="Animation_gcggu"]
 resource_name = "celebrate1"
-length = 1.5
+length = 1.6
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -251,7 +251,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_3eyut"]
-resource_name = "Intro"
+resource_name = "intro"
 length = 5.0
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -289,22 +289,31 @@ tracks/2/keys = {
 "update": 0,
 "values": [Vector2(0, -500), Vector2(0, -500), Vector2(0, 0), Vector2(0, -30), Vector2(0, 0)]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:state")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_wc4lb"]
 _data = {
-"Intro": SubResource("Animation_3eyut"),
 "RESET": SubResource("Animation_60u1s"),
 "celebrate1": SubResource("Animation_gcggu"),
 "crouch": SubResource("Animation_k7kcw"),
 "fall": SubResource("Animation_8legf"),
 "idle": SubResource("Animation_onw05"),
+"intro": SubResource("Animation_3eyut"),
 "jump": SubResource("Animation_smr16"),
 "splash": SubResource("Animation_1bj7d"),
 "walk": SubResource("Animation_0ra3k")
 }
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wc5e1"]
-animation = &"Intro"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bcipm"]
 animation = &"celebrate1"
@@ -317,6 +326,9 @@ animation = &"fall"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bxogh"]
 animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wc5e1"]
+animation = &"intro"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8d1mn"]
 animation = &"jump"
@@ -380,8 +392,6 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_1yfjf"]
 states/End/position = Vector2(1085, 100)
-states/Intro/node = SubResource("AnimationNodeAnimation_wc5e1")
-states/Intro/position = Vector2(355, 100)
 states/Start/position = Vector2(186, 100)
 states/celebrate1/node = SubResource("AnimationNodeAnimation_bcipm")
 states/celebrate1/position = Vector2(784, 100)
@@ -391,17 +401,20 @@ states/fall/node = SubResource("AnimationNodeAnimation_jbrxm")
 states/fall/position = Vector2(784, 27)
 states/idle/node = SubResource("AnimationNodeAnimation_bxogh")
 states/idle/position = Vector2(549, 100)
+states/intro/node = SubResource("AnimationNodeAnimation_wc5e1")
+states/intro/position = Vector2(355, 100)
 states/jump/node = SubResource("AnimationNodeAnimation_8d1mn")
 states/jump/position = Vector2(638, 27)
 states/splash/node = SubResource("AnimationNodeAnimation_ag5ue")
 states/splash/position = Vector2(955, 27)
 states/walk/node = SubResource("AnimationNodeAnimation_im2ls")
 states/walk/position = Vector2(549, 183)
-transitions = ["idle", "crouch", SubResource("AnimationNodeStateMachineTransition_blhhf"), "crouch", "jump", SubResource("AnimationNodeStateMachineTransition_u2t21"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_on2b7"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_53ye2"), "jump", "fall", SubResource("AnimationNodeStateMachineTransition_jhos6"), "fall", "splash", SubResource("AnimationNodeStateMachineTransition_0wrhm"), "celebrate1", "idle", SubResource("AnimationNodeStateMachineTransition_68jqv"), "idle", "celebrate1", SubResource("AnimationNodeStateMachineTransition_hts84"), "splash", "idle", SubResource("AnimationNodeStateMachineTransition_46j4v"), "jump", "celebrate1", SubResource("AnimationNodeStateMachineTransition_0yjji"), "idle", "jump", SubResource("AnimationNodeStateMachineTransition_7etvm"), "Start", "Intro", SubResource("AnimationNodeStateMachineTransition_cqrpx"), "Intro", "idle", SubResource("AnimationNodeStateMachineTransition_74xap")]
+transitions = ["idle", "crouch", SubResource("AnimationNodeStateMachineTransition_blhhf"), "crouch", "jump", SubResource("AnimationNodeStateMachineTransition_u2t21"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_on2b7"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_53ye2"), "jump", "fall", SubResource("AnimationNodeStateMachineTransition_jhos6"), "fall", "splash", SubResource("AnimationNodeStateMachineTransition_0wrhm"), "celebrate1", "idle", SubResource("AnimationNodeStateMachineTransition_68jqv"), "idle", "celebrate1", SubResource("AnimationNodeStateMachineTransition_hts84"), "splash", "idle", SubResource("AnimationNodeStateMachineTransition_46j4v"), "jump", "celebrate1", SubResource("AnimationNodeStateMachineTransition_0yjji"), "idle", "jump", SubResource("AnimationNodeStateMachineTransition_7etvm"), "Start", "intro", SubResource("AnimationNodeStateMachineTransition_cqrpx"), "intro", "idle", SubResource("AnimationNodeStateMachineTransition_74xap")]
 graph_offset = Vector2(68, -73)
 
 [node name="nian" type="CharacterBody2D"]
 script = ExtResource("1_f052h")
+state = 9
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_sns7u")

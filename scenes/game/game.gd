@@ -109,6 +109,8 @@ func _process(delta):
 
 			dragon_bean.state = State.WALK
 			pass
+		State.INTRO:
+			pass
 
 	match dragon_bean.state:
 		State.IDLE:
@@ -157,4 +159,6 @@ func _process(delta):
 			path_follow.v_offset = 125
 			pass
 		State.END:
+			pass
+		State.INTRO:
 			pass

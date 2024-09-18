@@ -9,7 +9,8 @@ enum State {
 	JUMPEND,
 	FALL,
 	SPLASH,
-  END
+  END,
+	INTRO
 }
 
 @export var state: State = State.IDLE

@@ -33,6 +33,7 @@ rotates = false
 loop = false
 
 [node name="nian" parent="Map/Path2D/PathFollow2D" instance=ExtResource("2_63crt")]
+state = 9
 
 [node name="NavAgent" type="NavigationAgent2D" parent="Map/Path2D"]
 path_desired_distance = 0.1
