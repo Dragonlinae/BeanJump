@@ -141,7 +141,6 @@ libraries = {
 [node name="CanvasGroup" type="CanvasGroup" parent="."]
 
 [node name="ColorRect" type="ColorRect" parent="CanvasGroup"]
-anchors_preset = -1
 offset_left = -2500.0
 offset_top = -178.0
 offset_right = 1500.0
@@ -178,7 +177,7 @@ text = "BEAN JUMP"
 [node name="CanvasGroup2" type="CanvasGroup" parent="."]
 
 [node name="ColorRect2" type="ColorRect" parent="CanvasGroup2"]
-anchors_preset = -1
+anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
