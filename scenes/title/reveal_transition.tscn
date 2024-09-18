@@ -9,7 +9,7 @@ length = 3.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CanvasGroup/ColorRect:position")
+tracks/0/path = NodePath("Control/CanvasGroup/ColorRect:position")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -21,7 +21,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("CanvasGroup2/ColorRect2:position")
+tracks/1/path = NodePath("Control/CanvasGroup2/ColorRect2:position")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -47,7 +47,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("CanvasGroup/ColorRect/Control/RichTextLabel:position")
+tracks/3/path = NodePath("Control/CanvasGroup/ColorRect/Control/RichTextLabel:position")
 tracks/3/interp = 2
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -59,7 +59,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("CanvasGroup2/ColorRect2/Control2/RichTextLabel:position")
+tracks/4/path = NodePath("Control/CanvasGroup2/ColorRect2/Control2/RichTextLabel:position")
 tracks/4/interp = 2
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -74,7 +74,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CanvasGroup/ColorRect:position")
+tracks/0/path = NodePath("Control/CanvasGroup/ColorRect:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -86,7 +86,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("CanvasGroup2/ColorRect2:position")
+tracks/1/path = NodePath("Control/CanvasGroup2/ColorRect2:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -98,7 +98,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("CanvasGroup/ColorRect/Control/RichTextLabel:position")
+tracks/2/path = NodePath("Control/CanvasGroup/ColorRect/Control/RichTextLabel:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -110,7 +110,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("CanvasGroup2/ColorRect2/Control2/RichTextLabel:position")
+tracks/3/path = NodePath("Control/CanvasGroup2/ColorRect2/Control2/RichTextLabel:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -138,9 +138,24 @@ libraries = {
 "": SubResource("AnimationLibrary_hs7g3")
 }
 
-[node name="CanvasGroup" type="CanvasGroup" parent="."]
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="ColorRect" type="ColorRect" parent="CanvasGroup"]
+[node name="CanvasGroup" type="CanvasGroup" parent="Control"]
+position = Vector2(-940, -520)
+
+[node name="ColorRect" type="ColorRect" parent="Control/CanvasGroup"]
 offset_left = -2500.0
 offset_top = -178.0
 offset_right = 1500.0
@@ -149,7 +164,7 @@ rotation = -0.523599
 color = Color(0.506094, 0.807242, 0.425036, 1)
 metadata/_edit_use_anchors_ = true
 
-[node name="Control" type="Control" parent="CanvasGroup/ColorRect"]
+[node name="Control" type="Control" parent="Control/CanvasGroup/ColorRect"]
 layout_mode = 3
 anchors_preset = 0
 offset_left = 1695.02
@@ -157,8 +172,9 @@ offset_top = 2102.14
 offset_right = 1735.02
 offset_bottom = 2142.14
 pivot_offset = Vector2(960, 230)
+metadata/_edit_use_anchors_ = true
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasGroup/ColorRect/Control"]
+[node name="RichTextLabel" type="RichTextLabel" parent="Control/CanvasGroup/ColorRect/Control"]
 material = SubResource("CanvasItemMaterial_7kuth")
 layout_mode = 1
 anchors_preset = 8
@@ -173,10 +189,12 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_sshig")
 text = "BEAN JUMP"
+metadata/_edit_use_anchors_ = true
 
-[node name="CanvasGroup2" type="CanvasGroup" parent="."]
+[node name="CanvasGroup2" type="CanvasGroup" parent="Control"]
+position = Vector2(-940, -520)
 
-[node name="ColorRect2" type="ColorRect" parent="CanvasGroup2"]
+[node name="ColorRect2" type="ColorRect" parent="Control/CanvasGroup2"]
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
@@ -190,7 +208,7 @@ rotation = -0.523599
 color = Color(0.506094, 0.807242, 0.425036, 1)
 metadata/_edit_use_anchors_ = true
 
-[node name="Control2" type="Control" parent="CanvasGroup2/ColorRect2"]
+[node name="Control2" type="Control" parent="Control/CanvasGroup2/ColorRect2"]
 layout_mode = 3
 anchors_preset = 0
 offset_left = 1492.79
@@ -198,8 +216,9 @@ offset_top = -253.58
 offset_right = 1532.79
 offset_bottom = -213.58
 pivot_offset = Vector2(960, 230)
+metadata/_edit_use_anchors_ = true
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasGroup2/ColorRect2/Control2"]
+[node name="RichTextLabel" type="RichTextLabel" parent="Control/CanvasGroup2/ColorRect2/Control2"]
 material = SubResource("CanvasItemMaterial_7kuth")
 layout_mode = 1
 anchors_preset = 8
@@ -214,3 +233,4 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_sshig")
 text = "BEAN JUMP"
+metadata/_edit_use_anchors_ = true
