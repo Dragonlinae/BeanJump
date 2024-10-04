@@ -17,6 +17,21 @@ shader_parameter/wave_2_speed = 0.1
 shader_parameter/wave_2_shift = 0.75
 shader_parameter/bg_color = Color(0, 0, 0, 0)
 
+[sub_resource type="Animation" id="Animation_l1spy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
 [sub_resource type="Animation" id="Animation_n0w16"]
 resource_name = "end"
 length = 2.0
@@ -46,21 +61,6 @@ tracks/1/keys = {
 "args": [],
 "method": &"switch_scene"
 }]
-}
-
-[sub_resource type="Animation" id="Animation_l1spy"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect:material:shader_parameter/progress")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rwob1"]

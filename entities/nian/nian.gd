@@ -1,16 +1,16 @@
 extends CharacterBody2D
 
 enum State {
-	IDLE,
-	WALK,
-	CELEBRATE,
-	CROUCH,
-	JUMP,
-	JUMPEND,
-	FALL,
-	SPLASH,
+  IDLE,
+  WALK,
+  CELEBRATE,
+  CROUCH,
+  JUMP,
+  JUMPEND,
+  FALL,
+  SPLASH,
   END,
-	INTRO
+  INTRO
 }
 
 @export var state: State = State.IDLE

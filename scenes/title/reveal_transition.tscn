@@ -129,9 +129,10 @@ _data = {
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_7kuth"]
 blend_mode = 2
 
-[node name="RevealTransition" type="CanvasLayer" node_paths=PackedStringArray("animation")]
+[node name="RevealTransition" type="CanvasLayer" node_paths=PackedStringArray("animation", "score_label")]
 script = ExtResource("1_u0wsu")
 animation = NodePath("AnimationPlayer")
+score_label = NodePath("Control/CanvasGroup2/ColorRect2/Control2/RichTextLabel/Score")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -182,9 +183,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 2500.0
-offset_right = 4500.0
-offset_bottom = 500.0
+offset_left = 2480.0
+offset_top = -20.0
+offset_right = 4480.0
+offset_bottom = 480.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_sshig")
@@ -226,11 +228,22 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 2500.0
-offset_right = 4500.0
-offset_bottom = 500.0
+offset_left = 2480.0
+offset_top = -20.0
+offset_right = 4480.0
+offset_bottom = 480.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_sshig")
 text = "BEAN JUMP"
 metadata/_edit_use_anchors_ = true
+
+[node name="Score" type="RichTextLabel" parent="Control/CanvasGroup2/ColorRect2/Control2/RichTextLabel"]
+layout_mode = 0
+offset_left = 765.722
+offset_top = 407.081
+offset_right = 1355.72
+offset_bottom = 907.081
+theme = ExtResource("2_sshig")
+theme_override_font_sizes/normal_font_size = 101
+text = "HS: 0"

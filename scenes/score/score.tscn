@@ -29,6 +29,7 @@ offset_bottom = 284.0
 color = Color(0.505882, 0.807843, 0.423529, 1)
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Control/Node/ColorRect"]
+layout_mode = 0
 offset_left = 908.217
 offset_top = 20.2168
 offset_right = 1384.22
