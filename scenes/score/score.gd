@@ -18,8 +18,8 @@ func add_score(land_count: int):
   score_label.text = "SCORE:" + str(score)
 
 func _exit_tree():
-  var hi_score = Gamesave.load_data("score")["hi_score"]
-  if score > hi_score:
+  var score_data = Gamesave.load_data("score")
+  if score_data != null and score_data["hi_score"] < score:
     Gamesave.save_data("score", save())
 
 func save():
