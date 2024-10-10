@@ -1,0 +1,60 @@
+[gd_scene load_steps=4 format=3 uid="uid://cfnkwd043f656"]
+
+[ext_resource type="Script" path="res://scenes/lives/lives.gd" id="1_0dell"]
+[ext_resource type="Texture2D" uid="uid://orcgymi7g4gp" path="res://icon.svg" id="1_bbbm7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tla1o"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[node name="Lives" type="Node2D" node_paths=PackedStringArray("arrow")]
+script = ExtResource("1_0dell")
+arrow = NodePath("Panel/CenterContainer/Control/Polygon2D")
+
+[node name="Panel" type="Panel" parent="."]
+offset_right = 436.0
+offset_bottom = 126.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_tla1o")
+
+[node name="CenterContainer" type="CenterContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="Panel/CenterContainer"]
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Panel/CenterContainer/Control"]
+position = Vector2(-150, 0)
+scale = Vector2(0.605469, 0.605469)
+texture = ExtResource("1_bbbm7")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Panel/CenterContainer/Control"]
+position = Vector2(-50, 0)
+scale = Vector2(0.605469, 0.605469)
+texture = ExtResource("1_bbbm7")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Panel/CenterContainer/Control"]
+position = Vector2(50, 0)
+scale = Vector2(0.605469, 0.605469)
+texture = ExtResource("1_bbbm7")
+
+[node name="Sprite2D4" type="Sprite2D" parent="Panel/CenterContainer/Control"]
+position = Vector2(150, 0)
+scale = Vector2(0.605469, 0.605469)
+texture = ExtResource("1_bbbm7")
+
+[node name="Polygon2D" type="Polygon2D" parent="Panel/CenterContainer/Control"]
+position = Vector2(-150, 75)
+polygon = PackedVector2Array(0, 0, 20, 34.641, -20, 34.641)

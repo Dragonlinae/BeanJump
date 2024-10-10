@@ -1,7 +1,7 @@
-[gd_scene load_steps=43 format=3 uid="uid://h05lkjeht4j3"]
+[gd_scene load_steps=43 format=3 uid="uid://dchdqjn3hrkcp"]
 
-[ext_resource type="Script" path="res://entities/nian/nian.gd" id="1_f052h"]
-[ext_resource type="Texture2D" uid="uid://b47tsi4r5gk1t" path="res://entities/nian/niansprites.png" id="1_uilon"]
+[ext_resource type="Script" path="res://entities/nian/nian.gd" id="1_w15ay"]
+[ext_resource type="Texture2D" uid="uid://b47tsi4r5gk1t" path="res://entities/nian/niansprites.png" id="2_e2ucu"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sns7u"]
 
@@ -441,7 +441,7 @@ advance_expression = "state == State.INTRO"
 advance_mode = 2
 advance_expression = "state == State.HIDDEN"
 
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_1yfjf"]
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_3kq8k"]
 states/End/position = Vector2(186, 183)
 states/Start/position = Vector2(181, 100)
 states/celebrate1/node = SubResource("AnimationNodeAnimation_bcipm")
@@ -465,7 +465,7 @@ states/walk/position = Vector2(549, 183)
 transitions = ["idle", "crouch", SubResource("AnimationNodeStateMachineTransition_blhhf"), "crouch", "jump", SubResource("AnimationNodeStateMachineTransition_u2t21"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_on2b7"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_53ye2"), "jump", "fall", SubResource("AnimationNodeStateMachineTransition_jhos6"), "fall", "splash", SubResource("AnimationNodeStateMachineTransition_0wrhm"), "celebrate1", "idle", SubResource("AnimationNodeStateMachineTransition_68jqv"), "idle", "celebrate1", SubResource("AnimationNodeStateMachineTransition_hts84"), "splash", "idle", SubResource("AnimationNodeStateMachineTransition_46j4v"), "jump", "celebrate1", SubResource("AnimationNodeStateMachineTransition_0yjji"), "idle", "jump", SubResource("AnimationNodeStateMachineTransition_7etvm"), "intro", "idle", SubResource("AnimationNodeStateMachineTransition_74xap"), "Start", "hidden", SubResource("AnimationNodeStateMachineTransition_5h5vp"), "hidden", "intro", SubResource("AnimationNodeStateMachineTransition_kqhhb"), "idle", "hidden", SubResource("AnimationNodeStateMachineTransition_e67rr")]
 graph_offset = Vector2(116, -20)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qer58"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_it5yh"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 border_width_left = 60
 border_width_top = 60
@@ -477,16 +477,17 @@ corner_radius_top_right = 256
 corner_radius_bottom_right = 256
 corner_radius_bottom_left = 256
 
-[sub_resource type="Gradient" id="Gradient_luw1y"]
+[sub_resource type="Gradient" id="Gradient_8rkbx"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 0, 0, 1)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_qy13u"]
-gradient = SubResource("Gradient_luw1y")
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_n5p4a"]
+gradient = SubResource("Gradient_8rkbx")
 width = 512
 height = 512
 
 [node name="nian" type="CharacterBody2D" node_paths=PackedStringArray("jump_bar_mask", "jump_bar")]
-script = ExtResource("1_f052h")
+modulate = Color(0, 0.658824, 0.929412, 1)
+script = ExtResource("1_w15ay")
 jump_bar_mask = NodePath("Panel")
 jump_bar = NodePath("Panel/TextureProgressBar")
 
@@ -495,7 +496,7 @@ shape = SubResource("CircleShape2D_sns7u")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(-1, 1)
-texture = ExtResource("1_uilon")
+texture = ExtResource("2_e2ucu")
 hframes = 5
 vframes = 3
 
@@ -505,7 +506,7 @@ libraries = {
 }
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource("AnimationNodeStateMachine_1yfjf")
+tree_root = SubResource("AnimationNodeStateMachine_3kq8k")
 advance_expression_base_node = NodePath("..")
 anim_player = NodePath("../AnimationPlayer")
 
@@ -515,13 +516,13 @@ offset_left = -256.0
 offset_top = -256.0
 offset_right = 256.0
 offset_bottom = 256.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_qer58")
+theme_override_styles/panel = SubResource("StyleBoxFlat_it5yh")
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="Panel"]
 offset_right = 512.0
 offset_bottom = 512.0
 value = 100.0
 fill_mode = 4
-texture_progress = SubResource("GradientTexture2D_qy13u")
+texture_progress = SubResource("GradientTexture2D_n5p4a")
 radial_initial_angle = 300.0
 radial_fill_degrees = 120.0

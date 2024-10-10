@@ -1,6 +1,7 @@
 extends CanvasLayer
 
 @export var score_label: RichTextLabel = null
+@export var lives: Node2D = null
 
 var score: int = 0
 
@@ -27,3 +28,9 @@ func save():
     "hi_score": score
   }
   return data
+
+func lose_life():
+  return lives.dec_life()
+
+func get_life():
+  return lives.get_life()

@@ -7,6 +7,7 @@ extends Node2D
 @export var camera: Camera2D = null
 @export var score: CanvasLayer = null
 @export var end_screen: CanvasLayer = null
+@export var characters: Node2D = null
 
 var State
 var hold_time: float = 0
@@ -23,8 +24,13 @@ const diagonal_in: Vector2 = Vector2(-90, -270)
 # Called when the node enters the scene tree for the first time.
 func _ready():
   State = dragon_bean.State
+  characters.change_bean(score.get_life())
+  dragon_bean = characters.get_bean(score.get_life())
+  dragon_bean.state = State.INTRO
+  print(dragon_bean.state)
   nav_agent = path.get_node("NavAgent")
   nav_agent.set_navigation_map(tilemap.get_navigation_map(0))
+  nav_agent.target_position = path.global_position
   end_tiles.append(tilemap.create_island(path.position, 1))
   
   while end_tiles.size() < 10:
@@ -116,9 +122,25 @@ func _process(delta):
 
         dragon_bean.state = State.WALK
       else:
-        dragon_bean.visible = false
-        end_screen.play_end()
-        await get_tree().create_timer(5).timeout
+        if score.lose_life():
+          lost = false
+          path.z_index = 1
+          path_follow_true_progress = 0
+          path_follow.progress_ratio = 0
+          path_follow.rotates = false
+          path_follow.rotation_degrees = 0
+          path_follow.v_offset = 0
+
+          path.global_position = nav_agent.target_position
+          camera.global_position = path.global_position
+          print("Lives left: " + str(score.get_life()))
+          characters.change_bean(score.get_life())
+          dragon_bean = characters.get_bean(score.get_life())
+          dragon_bean.state = State.INTRO
+        else:
+          dragon_bean.visible = false
+          end_screen.play_end()
+          set_process(false)
     State.INTRO:
       pass
 

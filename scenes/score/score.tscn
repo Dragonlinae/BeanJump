@@ -1,11 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://cfdfvpi6bpii8"]
+[gd_scene load_steps=4 format=3 uid="uid://cfdfvpi6bpii8"]
 
 [ext_resource type="Theme" uid="uid://bts8fppnyqfl8" path="res://scenes/score/score.tres" id="1_t5sn8"]
 [ext_resource type="Script" path="res://scenes/score/score.gd" id="1_xhb6y"]
+[ext_resource type="PackedScene" uid="uid://cfnkwd043f656" path="res://scenes/lives/lives.tscn" id="3_5ekar"]
 
-[node name="Score" type="CanvasLayer" node_paths=PackedStringArray("score_label")]
+[node name="Score" type="CanvasLayer" node_paths=PackedStringArray("score_label", "lives")]
 script = ExtResource("1_xhb6y")
 score_label = NodePath("Control/Node/ColorRect/RichTextLabel")
+lives = NodePath("Control/Node/ColorRect/Lives")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -39,3 +41,6 @@ text = "SCORE:0"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
+
+[node name="Lives" parent="Control/Node/ColorRect" instance=ExtResource("3_5ekar")]
+position = Vector2(928.005, 154.004)
