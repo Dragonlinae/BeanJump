@@ -70,7 +70,7 @@ func _process(delta):
     State.JUMP:
       if path_follow_true_progress >= 0.8: # Check if misses path
         var tile_pos = tilemap.local_to_map(path.position + path.curve.get_point_position(1) * path.scale)
-        if tilemap.get_cell_source_id(0, tile_pos) == -1:
+        if not tilemap.get_cell_tile_data(0, tile_pos) or tilemap.get_cell_tile_data(0, tile_pos).terrain_set != 0:
           dragon_bean.state = State.FALL
           lost = true
         else:

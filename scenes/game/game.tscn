@@ -44,10 +44,8 @@ script = ExtResource("3_ppnxi")
 dragon_beans = [NodePath("nian"), NodePath("dusk"), NodePath("nian"), NodePath("dusk")]
 
 [node name="nian" parent="Map/Path2D/PathFollow2D/Characters" instance=ExtResource("2_63crt")]
-scale = Vector2(1, 1)
 
 [node name="dusk" parent="Map/Path2D/PathFollow2D/Characters" instance=ExtResource("5_el3ia")]
-scale = Vector2(1, 1)
 
 [node name="NavAgent" type="NavigationAgent2D" parent="Map/Path2D"]
 path_desired_distance = 0.1
@@ -59,10 +57,10 @@ position = Vector2(610, 828.88)
 position_smoothing_enabled = true
 position_smoothing_speed = 3.0
 
-[node name="CanvasLayer" type="CanvasLayer" parent="Camera2D"]
+[node name="Background" type="CanvasLayer" parent="Camera2D"]
 layer = -1
 
-[node name="ColorRect" type="ColorRect" parent="Camera2D/CanvasLayer"]
+[node name="ColorRect" type="ColorRect" parent="Camera2D/Background"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://ccujndxn45wn5"]
+[gd_scene load_steps=9 format=3 uid="uid://ccujndxn45wn5"]
 
 [ext_resource type="Texture2D" uid="uid://d0t5avfl0adf5" path="res://scenes/map/land.png" id="1_nb2in"]
 [ext_resource type="Script" path="res://scenes/title/title.gd" id="1_v55t6"]
 [ext_resource type="Texture2D" uid="uid://dtt3wjiqadtcr" path="res://scenes/title/play.png" id="2_bhqep"]
+[ext_resource type="PackedScene" uid="uid://dgew1je8vd7ds" path="res://scenes/map/map.tscn" id="4_3h8hl"]
 
 [sub_resource type="Animation" id="Animation_2jvka"]
 resource_name = "Intro"
@@ -311,3 +312,21 @@ offset_bottom = 3568.0
 rotation = -0.523599
 color = Color(0.506094, 0.807242, 0.425036, 1)
 metadata/_edit_use_anchors_ = true
+
+[node name="Background" type="Node2D" parent="."]
+
+[node name="Land" parent="Background" instance=ExtResource("4_3h8hl")]
+layer_0/tile_data = PackedInt32Array(131072, 4, 0, 131073, 2, 0, 196609, 5, 0, 196608, 2, 0, -196609, 2, 0, -131073, 2, 0, -131074, 2, 0, -131075, 0, 0, -65539, 2, 0, -65540, 2, 0, 65531, 2, 0, 131067, 2, 0, -131070, 4, 0, -65533, 1, 0, -131069, 4, 0, -65532, 5, 0, 4, 5, 0, 3, 2, 0, -262142, 4, 0, -196605, 5, 0, -262141, 2, 0, 131078, 2, 0, 196614, 2, 0, 196613, 2, 0, 196612, 2, 0, 262148, 2, 0, 262147, 2, 0, 458752, 2, 0, -262148, 2, 0, -262149, 2, 0, -196613, 2, 0, -196612, 0, 0, -458751, 2, 0, -458750, 5, 0, -524287, 4, 0, -196611, 0, 0, -131076, 0, 0, -393215, 0, 0, -327679, 0, 0, -327680, 0, 0, -262143, 0, 0, -262144, 0, 0, -196607, 0, 0, -393216, 0, 0, -196608, 0, 0, 393213, 0, 0, 393214, 0, 0, 327678, 0, 0, 327677, 0, 0, 262142, 0, 0, 262141, 0, 0, 196605, 0, 0, 196606, 0, 0, -131066, 0, 0, -65530, 0, 0, 6, 0, 0, -65531, 0, 0, -131067, 0, 0, 5, 0, 0, 7, 0, 0, -65529, 0, 0, -131065, 0, 0)
+
+[node name="Camera2D" type="Camera2D" parent="Background"]
+
+[node name="Background" type="CanvasLayer" parent="Background/Camera2D"]
+layer = -1
+
+[node name="ColorRect" type="ColorRect" parent="Background/Camera2D/Background"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.705882, 0.705882, 0.529412, 1)
