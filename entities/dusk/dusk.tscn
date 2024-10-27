@@ -533,7 +533,7 @@ corner_radius_bottom_right = 256
 corner_radius_bottom_left = 256
 
 [sub_resource type="Gradient" id="Gradient_8rkbx"]
-colors = PackedColorArray(1, 1, 1, 1, 1, 0, 0, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0.284359, 0.249759, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_n5p4a"]
 gradient = SubResource("Gradient_8rkbx")

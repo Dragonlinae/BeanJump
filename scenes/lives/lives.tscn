@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://cfnkwd043f656"]
+[gd_scene load_steps=5 format=3 uid="uid://cfnkwd043f656"]
 
 [ext_resource type="Script" path="res://scenes/lives/lives.gd" id="1_0dell"]
-[ext_resource type="Texture2D" uid="uid://orcgymi7g4gp" path="res://icon.svg" id="1_bbbm7"]
+[ext_resource type="Texture2D" uid="uid://cqqrc27so8gos" path="res://scenes/lives/nian.png" id="2_ydggp"]
+[ext_resource type="Texture2D" uid="uid://bthleefd6d6ny" path="res://scenes/lives/dusk.png" id="3_rxqdr"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tla1o"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -37,23 +38,23 @@ layout_mode = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="Panel/CenterContainer/Control"]
 position = Vector2(-150, 0)
-scale = Vector2(0.605469, 0.605469)
-texture = ExtResource("1_bbbm7")
+scale = Vector2(0.414063, 0.414063)
+texture = ExtResource("2_ydggp")
 
 [node name="Sprite2D2" type="Sprite2D" parent="Panel/CenterContainer/Control"]
 position = Vector2(-50, 0)
-scale = Vector2(0.605469, 0.605469)
-texture = ExtResource("1_bbbm7")
+scale = Vector2(0.414063, 0.414063)
+texture = ExtResource("3_rxqdr")
 
 [node name="Sprite2D3" type="Sprite2D" parent="Panel/CenterContainer/Control"]
 position = Vector2(50, 0)
-scale = Vector2(0.605469, 0.605469)
-texture = ExtResource("1_bbbm7")
+scale = Vector2(0.414063, 0.414063)
+texture = ExtResource("2_ydggp")
 
 [node name="Sprite2D4" type="Sprite2D" parent="Panel/CenterContainer/Control"]
 position = Vector2(150, 0)
-scale = Vector2(0.605469, 0.605469)
-texture = ExtResource("1_bbbm7")
+scale = Vector2(0.414063, 0.414063)
+texture = ExtResource("3_rxqdr")
 
 [node name="Polygon2D" type="Polygon2D" parent="Panel/CenterContainer/Control"]
 position = Vector2(-150, 75)
