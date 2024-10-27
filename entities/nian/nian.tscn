@@ -1,7 +1,7 @@
-[gd_scene load_steps=43 format=3 uid="uid://h05lkjeht4j3"]
+[gd_scene load_steps=50 format=3 uid="uid://c16e17mqh0vnx"]
 
 [ext_resource type="Script" path="res://entities/nian/nian.gd" id="1_f052h"]
-[ext_resource type="Texture2D" uid="uid://b47tsi4r5gk1t" path="res://entities/nian/niansprites.png" id="1_uilon"]
+[ext_resource type="Texture2D" uid="uid://xswyly81cd73" path="res://entities/nian/BeanspritesNian.png" id="2_wlf14"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sns7u"]
 
@@ -70,7 +70,7 @@ tracks/4/keys = {
 
 [sub_resource type="Animation" id="Animation_gcggu"]
 resource_name = "celebrate1"
-length = 1.6
+length = 1.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -341,10 +341,39 @@ tracks/0/keys = {
 "values": [9, 10]
 }
 
+[sub_resource type="Animation" id="Animation_kul6i"]
+resource_name = "celebrate1"
+length = 1.9
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.9, 1.1, 1.3, 1.5, 1.7, 1.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [14, 15, 0, 16, 17, 16, 17, 0, 18, 19, 18, 19, 18, 0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:state")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1.9),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [8]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_wc4lb"]
 _data = {
 "RESET": SubResource("Animation_60u1s"),
 "celebrate1": SubResource("Animation_gcggu"),
+"celebrate2": SubResource("Animation_kul6i"),
 "crouch": SubResource("Animation_k7kcw"),
 "fall": SubResource("Animation_8legf"),
 "hidden": SubResource("Animation_k10in"),
@@ -355,8 +384,34 @@ _data = {
 "walk": SubResource("Animation_0ra3k")
 }
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bcipm"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_suefk"]
 animation = &"celebrate1"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_aknbx"]
+animation = &"celebrate2"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ojel2"]
+advance_mode = 2
+advance_expression = "get_time() % 2 == 0"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vdt7w"]
+advance_mode = 2
+advance_expression = "get_time() % 2 == 1"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_elgrb"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_m6ctt"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_olhpt"]
+states/celebrate1/node = SubResource("AnimationNodeAnimation_suefk")
+states/celebrate1/position = Vector2(511, 41)
+states/celebrate2/node = SubResource("AnimationNodeAnimation_aknbx")
+states/celebrate2/position = Vector2(511, 180)
+transitions = ["Start", "celebrate1", SubResource("AnimationNodeStateMachineTransition_ojel2"), "Start", "celebrate2", SubResource("AnimationNodeStateMachineTransition_vdt7w"), "celebrate1", "End", SubResource("AnimationNodeStateMachineTransition_elgrb"), "celebrate2", "End", SubResource("AnimationNodeStateMachineTransition_m6ctt")]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qewku"]
 animation = &"crouch"
@@ -406,21 +461,9 @@ advance_expression = "state == State.FALL"
 advance_mode = 2
 advance_expression = "state == State.SPLASH"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_68jqv"]
-switch_mode = 2
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hts84"]
-advance_mode = 2
-advance_expression = "state == State.CELEBRATE"
-
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_46j4v"]
 advance_mode = 2
 advance_expression = "state != State.SPLASH"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0yjji"]
-advance_mode = 2
-advance_expression = "state == State.CELEBRATE"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7etvm"]
 advance_mode = 2
@@ -441,11 +484,23 @@ advance_expression = "state == State.INTRO"
 advance_mode = 2
 advance_expression = "state == State.HIDDEN"
 
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_1yfjf"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_daiog"]
+advance_mode = 2
+advance_expression = "state == State.CELEBRATE"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4c84d"]
+advance_mode = 2
+advance_expression = "state == State.CELEBRATE"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_eg7ee"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_3kq8k"]
+states/Celebrate/node = SubResource("AnimationNodeStateMachine_olhpt")
+states/Celebrate/position = Vector2(955, 100)
 states/End/position = Vector2(186, 183)
 states/Start/position = Vector2(181, 100)
-states/celebrate1/node = SubResource("AnimationNodeAnimation_bcipm")
-states/celebrate1/position = Vector2(784, 100)
 states/crouch/node = SubResource("AnimationNodeAnimation_qewku")
 states/crouch/position = Vector2(453, 27)
 states/fall/node = SubResource("AnimationNodeAnimation_jbrxm")
@@ -462,10 +517,10 @@ states/splash/node = SubResource("AnimationNodeAnimation_ag5ue")
 states/splash/position = Vector2(955, 27)
 states/walk/node = SubResource("AnimationNodeAnimation_im2ls")
 states/walk/position = Vector2(549, 183)
-transitions = ["idle", "crouch", SubResource("AnimationNodeStateMachineTransition_blhhf"), "crouch", "jump", SubResource("AnimationNodeStateMachineTransition_u2t21"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_on2b7"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_53ye2"), "jump", "fall", SubResource("AnimationNodeStateMachineTransition_jhos6"), "fall", "splash", SubResource("AnimationNodeStateMachineTransition_0wrhm"), "celebrate1", "idle", SubResource("AnimationNodeStateMachineTransition_68jqv"), "idle", "celebrate1", SubResource("AnimationNodeStateMachineTransition_hts84"), "splash", "idle", SubResource("AnimationNodeStateMachineTransition_46j4v"), "jump", "celebrate1", SubResource("AnimationNodeStateMachineTransition_0yjji"), "idle", "jump", SubResource("AnimationNodeStateMachineTransition_7etvm"), "intro", "idle", SubResource("AnimationNodeStateMachineTransition_74xap"), "Start", "hidden", SubResource("AnimationNodeStateMachineTransition_5h5vp"), "hidden", "intro", SubResource("AnimationNodeStateMachineTransition_kqhhb"), "idle", "hidden", SubResource("AnimationNodeStateMachineTransition_e67rr")]
+transitions = ["idle", "crouch", SubResource("AnimationNodeStateMachineTransition_blhhf"), "crouch", "jump", SubResource("AnimationNodeStateMachineTransition_u2t21"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_on2b7"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_53ye2"), "jump", "fall", SubResource("AnimationNodeStateMachineTransition_jhos6"), "fall", "splash", SubResource("AnimationNodeStateMachineTransition_0wrhm"), "splash", "idle", SubResource("AnimationNodeStateMachineTransition_46j4v"), "idle", "jump", SubResource("AnimationNodeStateMachineTransition_7etvm"), "intro", "idle", SubResource("AnimationNodeStateMachineTransition_74xap"), "Start", "hidden", SubResource("AnimationNodeStateMachineTransition_5h5vp"), "hidden", "intro", SubResource("AnimationNodeStateMachineTransition_kqhhb"), "idle", "hidden", SubResource("AnimationNodeStateMachineTransition_e67rr"), "jump", "Celebrate", SubResource("AnimationNodeStateMachineTransition_daiog"), "idle", "Celebrate", SubResource("AnimationNodeStateMachineTransition_4c84d"), "Celebrate", "idle", SubResource("AnimationNodeStateMachineTransition_eg7ee")]
 graph_offset = Vector2(116, -20)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qer58"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_it5yh"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 border_width_left = 60
 border_width_top = 60
@@ -477,11 +532,11 @@ corner_radius_top_right = 256
 corner_radius_bottom_right = 256
 corner_radius_bottom_left = 256
 
-[sub_resource type="Gradient" id="Gradient_luw1y"]
+[sub_resource type="Gradient" id="Gradient_8rkbx"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 0, 0, 1)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_qy13u"]
-gradient = SubResource("Gradient_luw1y")
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_n5p4a"]
+gradient = SubResource("Gradient_8rkbx")
 width = 512
 height = 512
 
@@ -495,9 +550,9 @@ shape = SubResource("CircleShape2D_sns7u")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(-1, 1)
-texture = ExtResource("1_uilon")
+texture = ExtResource("2_wlf14")
 hframes = 5
-vframes = 3
+vframes = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -505,7 +560,7 @@ libraries = {
 }
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource("AnimationNodeStateMachine_1yfjf")
+tree_root = SubResource("AnimationNodeStateMachine_3kq8k")
 advance_expression_base_node = NodePath("..")
 anim_player = NodePath("../AnimationPlayer")
 
@@ -515,7 +570,7 @@ offset_left = -256.0
 offset_top = -256.0
 offset_right = 256.0
 offset_bottom = 256.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_qer58")
+theme_override_styles/panel = SubResource("StyleBoxFlat_it5yh")
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="Panel"]
 layout_mode = 0
@@ -523,6 +578,6 @@ offset_right = 512.0
 offset_bottom = 512.0
 value = 100.0
 fill_mode = 4
-texture_progress = SubResource("GradientTexture2D_qy13u")
+texture_progress = SubResource("GradientTexture2D_n5p4a")
 radial_initial_angle = 300.0
 radial_fill_degrees = 120.0

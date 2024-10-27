@@ -188,7 +188,7 @@ func _process(delta):
       path_follow.progress_ratio = 1
       path_follow.rotates = false
       path_follow.rotation_degrees = 90
-      path_follow.v_offset = 125
+      path_follow.v_offset = 50
       pass
     State.END:
       pass

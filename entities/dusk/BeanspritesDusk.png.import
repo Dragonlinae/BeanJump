@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cti0hwdjy1xlt"
-path="res://.godot/imported/niansprites.png-a9ea3dba6ba4deb40b8960c888ba08ac.ctex"
+uid="uid://bdgu5yxmpetwc"
+path="res://.godot/imported/BeanspritesDusk.png-3b882e7d34f2f3a766dd486996878428.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://entities/dusk/niansprites.png"
-dest_files=["res://.godot/imported/niansprites.png-a9ea3dba6ba4deb40b8960c888ba08ac.ctex"]
+source_file="res://entities/dusk/BeanspritesDusk.png"
+dest_files=["res://.godot/imported/BeanspritesDusk.png-3b882e7d34f2f3a766dd486996878428.ctex"]
 
 [params]
 

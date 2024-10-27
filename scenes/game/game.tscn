@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://cs41fswm3lnnm"]
 
 [ext_resource type="Script" path="res://scenes/game/game.gd" id="1_o45cd"]
-[ext_resource type="PackedScene" uid="uid://h05lkjeht4j3" path="res://entities/nian/nian.tscn" id="2_63crt"]
+[ext_resource type="PackedScene" uid="uid://c16e17mqh0vnx" path="res://entities/nian/nian.tscn" id="2_63crt"]
 [ext_resource type="PackedScene" uid="uid://dgew1je8vd7ds" path="res://scenes/map/map.tscn" id="2_tehh8"]
 [ext_resource type="Script" path="res://scenes/game/Characters.gd" id="3_ppnxi"]
 [ext_resource type="PackedScene" uid="uid://dmxb8c25arx31" path="res://scenes/title/reveal_transition.tscn" id="4_1o788"]
