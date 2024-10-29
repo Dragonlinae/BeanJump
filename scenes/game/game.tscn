@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cs41fswm3lnnm"]
+[gd_scene load_steps=20 format=3 uid="uid://cs41fswm3lnnm"]
 
 [ext_resource type="Script" path="res://scenes/game/game.gd" id="1_o45cd"]
 [ext_resource type="PackedScene" uid="uid://c16e17mqh0vnx" path="res://entities/nian/nian.tscn" id="2_63crt"]
@@ -8,10 +8,14 @@
 [ext_resource type="PackedScene" uid="uid://dchdqjn3hrkcp" path="res://entities/dusk/dusk.tscn" id="5_el3ia"]
 [ext_resource type="PackedScene" uid="uid://cfdfvpi6bpii8" path="res://scenes/score/score.tscn" id="5_f1hal"]
 [ext_resource type="PackedScene" uid="uid://duvxrwr3fn0j1" path="res://scenes/end/end.tscn" id="6_2thgq"]
+[ext_resource type="PackedScene" uid="uid://cpl7yhosnv4o2" path="res://entities/nian2/nian.tscn" id="6_g5lyo"]
 [ext_resource type="Texture2D" uid="uid://ckkis8wtfr6te" path="res://scenes/game/sign1.png" id="6_tjn3o"]
 [ext_resource type="Texture2D" uid="uid://ydum0dthgndu" path="res://scenes/game/sign2.png" id="7_frbpt"]
+[ext_resource type="PackedScene" uid="uid://d6tmycl7uhkh" path="res://entities/dusk2/dusk.tscn" id="7_o3hfi"]
 [ext_resource type="Texture2D" uid="uid://cpgr0qon6f2x6" path="res://scenes/game/sign3.png" id="8_tyv2t"]
 [ext_resource type="Texture2D" uid="uid://jvtaqhrmfeak" path="res://scenes/game/sign4.png" id="9_3eq1n"]
+[ext_resource type="Texture2D" uid="uid://cxf78m66lbtlk" path="res://scenes/game/speed.png" id="13_5if6s"]
+[ext_resource type="Texture2D" uid="uid://xu4ouupd54f8" path="res://scenes/game/speedon.png" id="14_5ldfw"]
 
 [sub_resource type="Curve2D" id="Curve2D_ivs61"]
 _data = {
@@ -39,7 +43,26 @@ animations = [{
 "speed": 1.0
 }]
 
-[node name="Game" type="Node2D" node_paths=PackedStringArray("dragon_bean", "path", "path_follow", "tilemap", "camera", "score", "end_screen", "characters")]
+[sub_resource type="SpriteFrames" id="SpriteFrames_w0t47"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_5if6s")
+}],
+"loop": true,
+"name": &"off",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_5ldfw")
+}],
+"loop": true,
+"name": &"on",
+"speed": 5.0
+}]
+
+[node name="Game" type="Node2D" node_paths=PackedStringArray("dragon_bean", "path", "path_follow", "tilemap", "camera", "score", "end_screen", "characters", "mouse_sprite")]
 script = ExtResource("1_o45cd")
 dragon_bean = NodePath("Map/Path2D/PathFollow2D/Characters/nian")
 path = NodePath("Map/Path2D")
@@ -49,6 +72,7 @@ camera = NodePath("Camera2D")
 score = NodePath("Camera2D/Score")
 end_screen = NodePath("Camera2D/End")
 characters = NodePath("Map/Path2D/PathFollow2D/Characters")
+mouse_sprite = NodePath("CanvasLayer/mouse")
 
 [node name="Map" parent="." instance=ExtResource("2_tehh8")]
 layer_0/tile_data = PackedInt32Array(589820, 2, 0, 589819, 1, 0, 655355, 5, 0, 589818, 1, 0, 655354, 1, 0, 589816, 4, 0, 589815, 4, 0, 655352, 1, 0, 589817, 1, 0, 720889, 1, 0, 655353, 1, 0, 720890, 1, 0, 720891, 5, 0, 655356, 5, 0, 786427, 5, 0, 786426, 5, 0, 524281, 4, 0, 524280, 4, 0, 524282, 4, 0)
@@ -65,11 +89,15 @@ loop = false
 
 [node name="Characters" type="Node2D" parent="Map/Path2D/PathFollow2D" node_paths=PackedStringArray("dragon_beans")]
 script = ExtResource("3_ppnxi")
-dragon_beans = [NodePath("nian"), NodePath("dusk"), NodePath("nian"), NodePath("dusk")]
+dragon_beans = [NodePath("nian"), NodePath("dusk"), NodePath("nian2"), NodePath("dusk2")]
 
 [node name="nian" parent="Map/Path2D/PathFollow2D/Characters" instance=ExtResource("2_63crt")]
 
 [node name="dusk" parent="Map/Path2D/PathFollow2D/Characters" instance=ExtResource("5_el3ia")]
+
+[node name="nian2" parent="Map/Path2D/PathFollow2D/Characters" instance=ExtResource("6_g5lyo")]
+
+[node name="dusk2" parent="Map/Path2D/PathFollow2D/Characters" instance=ExtResource("7_o3hfi")]
 
 [node name="NavAgent" type="NavigationAgent2D" parent="Map/Path2D"]
 path_desired_distance = 0.1
@@ -106,3 +134,14 @@ layer = 10
 [node name="Score" parent="Camera2D" instance=ExtResource("5_f1hal")]
 
 [node name="End" parent="Camera2D" instance=ExtResource("6_2thgq")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="mouse" type="AnimatedSprite2D" parent="CanvasLayer"]
+visible = false
+z_index = 1000
+z_as_relative = false
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_w0t47")
+animation = &"off"
+offset = Vector2(6.595, 50.93)

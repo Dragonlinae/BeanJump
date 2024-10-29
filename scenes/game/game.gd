@@ -8,6 +8,7 @@ extends Node2D
 @export var score: CanvasLayer = null
 @export var end_screen: CanvasLayer = null
 @export var characters: Node2D = null
+@export var mouse_sprite: AnimatedSprite2D = null
 
 var State
 var hold_time: float = 0
@@ -46,6 +47,10 @@ func _process(delta):
 
   match dragon_bean.state:
     State.IDLE:
+      Engine.time_scale = 1.0
+      mouse_sprite.play("off")
+      mouse_sprite.visible = false
+      Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
       if Input.is_action_just_pressed("click"):
         dragon_bean.state = State.CROUCH
         hold_time = 0
@@ -68,6 +73,8 @@ func _process(delta):
         if abs(path.to_global(path.curve.get_point_position(1)).x - camera.global_position.x) > camera.get_viewport_rect().size.x / 3 or abs(path.to_global(path.curve.get_point_position(1)).y - camera.global_position.y) > camera.get_viewport_rect().size.y / 3:
           camera.global_position = path.to_global(path.curve.get_point_position(1))
     State.JUMP:
+      mouse_sprite.visible = true
+      Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
       if path_follow_true_progress >= 0.8: # Check if misses path
         var tile_pos = tilemap.local_to_map(path.position + path.curve.get_point_position(1) * path.scale)
         if not tilemap.get_cell_tile_data(0, tile_pos) or tilemap.get_cell_tile_data(0, tile_pos).terrain_set != 0:
@@ -139,6 +146,10 @@ func _process(delta):
           dragon_bean.state = State.INTRO
         else:
           dragon_bean.visible = false
+          Engine.time_scale = 1.0
+          mouse_sprite.play("off")
+          mouse_sprite.visible = false
+          Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
           end_screen.play_end()
           set_process(false)
     State.INTRO:
@@ -194,3 +205,14 @@ func _process(delta):
       pass
     State.INTRO:
       pass
+
+func _input(event):
+  if event.is_action_pressed("click") and not dragon_bean.state == State.CROUCH and not dragon_bean.state == State.IDLE:
+    Engine.time_scale = 5.0
+    mouse_sprite.play("on")
+  elif event.is_action_released("click"):
+    Engine.time_scale = 1.0
+    mouse_sprite.play("off")
+  if event is InputEventMouseMotion:
+    mouse_sprite.position = event.global_position
+    print(mouse_sprite.global_position)

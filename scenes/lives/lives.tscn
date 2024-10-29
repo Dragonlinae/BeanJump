@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://cfnkwd043f656"]
+[gd_scene load_steps=8 format=3 uid="uid://cfnkwd043f656"]
 
 [ext_resource type="Script" path="res://scenes/lives/lives.gd" id="1_0dell"]
 [ext_resource type="Texture2D" uid="uid://cqqrc27so8gos" path="res://scenes/lives/nian.png" id="2_ydggp"]
 [ext_resource type="Texture2D" uid="uid://bthleefd6d6ny" path="res://scenes/lives/dusk.png" id="3_rxqdr"]
+[ext_resource type="Shader" path="res://entities/dusk2/invertcolor.gdshader" id="4_ecrpd"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tla1o"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -15,6 +16,12 @@ corner_radius_top_left = 25
 corner_radius_top_right = 25
 corner_radius_bottom_right = 25
 corner_radius_bottom_left = 25
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tv0yt"]
+shader = ExtResource("4_ecrpd")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qir4v"]
+shader = ExtResource("4_ecrpd")
 
 [node name="Lives" type="Node2D" node_paths=PackedStringArray("arrow")]
 script = ExtResource("1_0dell")
@@ -47,11 +54,13 @@ scale = Vector2(0.414063, 0.414063)
 texture = ExtResource("3_rxqdr")
 
 [node name="Sprite2D3" type="Sprite2D" parent="Panel/CenterContainer/Control"]
+material = SubResource("ShaderMaterial_tv0yt")
 position = Vector2(50, 0)
 scale = Vector2(0.414063, 0.414063)
 texture = ExtResource("2_ydggp")
 
 [node name="Sprite2D4" type="Sprite2D" parent="Panel/CenterContainer/Control"]
+material = SubResource("ShaderMaterial_qir4v")
 position = Vector2(150, 0)
 scale = Vector2(0.414063, 0.414063)
 texture = ExtResource("3_rxqdr")
