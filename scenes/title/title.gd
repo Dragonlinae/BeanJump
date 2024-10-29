@@ -22,12 +22,6 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-  if Input.is_action_just_pressed("click") and not is_play and not music_button.is_hovered() and not credits_button.is_hovered():
-    if credits.visible:
-      credits.visible = false
-    else:
-      is_play = true
-      animation.play("Outro")
   pass
 
 func switch_scene():
@@ -47,3 +41,18 @@ func _on_Music_Button_pressed():
 
 func _on_Credits_Button_pressed():
   credits.visible = not credits.visible
+
+func _input(event):
+  if event.is_action_released("click"):
+    if credits.visible:
+      credits.visible = false
+    elif not music_button.get_global_rect().has_point(event.global_position) and not credits_button.get_global_rect().has_point(event.global_position):
+      print(event.position)
+      print(music_button.get_global_rect())
+      print(music_button.global_position)
+      print(music_button.position)
+      if credits.visible:
+        credits.visible = false
+      else:
+        is_play = true
+        animation.play("Outro")
