@@ -28,7 +28,6 @@ func _ready():
   characters.change_bean(score.get_life())
   dragon_bean = characters.get_bean(score.get_life())
   dragon_bean.state = State.INTRO
-  print(dragon_bean.state)
   nav_agent = path.get_node("NavAgent")
   nav_agent.set_navigation_map(tilemap.get_navigation_map(0))
   nav_agent.target_position = path.global_position
@@ -140,7 +139,6 @@ func _process(delta):
 
           path.global_position = nav_agent.target_position
           camera.global_position = path.global_position
-          print("Lives left: " + str(score.get_life()))
           characters.change_bean(score.get_life())
           dragon_bean = characters.get_bean(score.get_life())
           dragon_bean.state = State.INTRO
@@ -215,4 +213,3 @@ func _input(event):
     mouse_sprite.play("off")
   if event is InputEventMouseMotion:
     mouse_sprite.position = event.global_position
-    print(mouse_sprite.global_position)

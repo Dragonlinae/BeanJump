@@ -30,7 +30,6 @@ func switch_scene():
 
 
 func _on_Music_Button_pressed():
-  print("Button pressed")
   music_on = not music_on
   if music_on:
     music_sprite.texture = music_on_texture
@@ -46,11 +45,7 @@ func _input(event):
   if event.is_action_released("click"):
     if credits.visible:
       credits.visible = false
-    elif not music_button.get_global_rect().has_point(event.global_position) and not credits_button.get_global_rect().has_point(event.global_position):
-      print(event.position)
-      print(music_button.get_global_rect())
-      print(music_button.global_position)
-      print(music_button.position)
+    elif (not "global_position" in event) or (not music_button.get_global_rect().has_point(event.global_position) and not credits_button.get_global_rect().has_point(event.global_position)):
       if credits.visible:
         credits.visible = false
       else:
