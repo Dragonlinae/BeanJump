@@ -1,10 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://ccujndxn45wn5"]
+[gd_scene load_steps=13 format=3 uid="uid://ccujndxn45wn5"]
 
 [ext_resource type="Texture2D" uid="uid://d0t5avfl0adf5" path="res://scenes/map/land.png" id="1_nb2in"]
 [ext_resource type="Script" path="res://scenes/title/title.gd" id="1_v55t6"]
 [ext_resource type="Texture2D" uid="uid://dtt3wjiqadtcr" path="res://scenes/title/play.png" id="2_bhqep"]
 [ext_resource type="Script" path="res://scenes/title/ParallaxBackground.gd" id="2_j4ym8"]
 [ext_resource type="PackedScene" uid="uid://dgew1je8vd7ds" path="res://scenes/map/map.tscn" id="4_3h8hl"]
+[ext_resource type="Texture2D" uid="uid://pxv8qgayooim" path="res://scenes/title/nomusic.png" id="6_0mexq"]
+[ext_resource type="Texture2D" uid="uid://cdwm88ckkctuf" path="res://scenes/title/credits.png" id="7_75c1p"]
+[ext_resource type="Texture2D" uid="uid://bkl32qgw01vx7" path="res://scenes/title/music.png" id="8_42l8x"]
 
 [sub_resource type="Animation" id="Animation_2jvka"]
 resource_name = "Intro"
@@ -80,6 +83,30 @@ tracks/5/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [3150.0, 1835.0, 1835.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("CanvasLayer/Control2/MusicButton:position")
+tracks/6/interp = 2
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(1.3, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-260, -267), Vector2(0, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("CanvasLayer/Control3/CreditsButton:position")
+tracks/7/interp = 2
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(1.3, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(57, 60), Vector2(-387, -206)]
 }
 
 [sub_resource type="Animation" id="Animation_cstx6"]
@@ -171,6 +198,30 @@ tracks/6/keys = {
 "update": 0,
 "values": [1835.0, 1835.0, 680.0]
 }
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("CanvasLayer/Control2/MusicButton:position")
+tracks/7/interp = 2
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-260, -267)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("CanvasLayer/Control3/CreditsButton:position")
+tracks/8/interp = 2
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-387, -206), Vector2(57, 60)]
+}
 
 [sub_resource type="Animation" id="Animation_ag23f"]
 length = 0.001
@@ -246,6 +297,30 @@ tracks/5/keys = {
 "update": 1,
 "values": [785.0]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("CanvasLayer/Control2/MusicButton:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("CanvasLayer/Control3/CreditsButton:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-387, -206)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vam6v"]
 _data = {
@@ -254,9 +329,15 @@ _data = {
 "RESET": SubResource("Animation_ag23f")
 }
 
-[node name="Title" type="Node2D" node_paths=PackedStringArray("animation")]
+[node name="Title" type="Node2D" node_paths=PackedStringArray("animation", "music_button", "credits_button", "credits", "music_sprite")]
 script = ExtResource("1_v55t6")
 animation = NodePath("CanvasLayer/Control/AnimationPlayer")
+music_button = NodePath("CanvasLayer/Control2/MusicButton")
+credits_button = NodePath("CanvasLayer/Control3/CreditsButton")
+credits = NodePath("CanvasLayer/Control3/CreditsPage")
+music_sprite = NodePath("CanvasLayer/Control2/MusicButton/Sprite2D")
+music_off_texture = ExtResource("6_0mexq")
+music_on_texture = ExtResource("8_42l8x")
 
 [node name="Background" type="CanvasLayer" parent="."]
 
@@ -343,3 +424,81 @@ color = Color(0.506094, 0.807242, 0.425036, 1)
 metadata/_edit_use_anchors_ = true
 
 [node name="Camera2D" type="Camera2D" parent="CanvasLayer"]
+
+[node name="Control2" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MusicButton" type="Button" parent="CanvasLayer/Control2"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_right = 264.0
+offset_bottom = 264.0
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/Control2/MusicButton"]
+position = Vector2(132, 132)
+texture = ExtResource("6_0mexq")
+
+[node name="Control3" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="CreditsButton" type="Button" parent="CanvasLayer/Control3"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = -387.0
+offset_top = -206.0
+offset_right = -32.0
+offset_bottom = -15.0
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/Control3/CreditsButton"]
+position = Vector2(171, 90)
+scale = Vector2(0.339815, 0.339815)
+texture = ExtResource("7_75c1p")
+
+[node name="CreditsPage" type="CanvasLayer" parent="CanvasLayer/Control3"]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Control3/CreditsPage"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.8)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Control3/CreditsPage/ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "\"Bean Jump\"
+- A fan game based on Arknights
+
+All character designs are owned by Hypergryph (Arknights) or Yostar (Yoyo)
+
+Director: Dragonlinae
+Lead Designer: Dragonlinae
+Lead Programmer: Dragonlinae
+Lead Animator: Dragonlinae
+Art: Dragonlinae
+
+Music: 
+\"I cannot the bean music\" by Dragonlinae
+
+Built with Godot
+godotengine.org/license
+
+I don't have enough art left in me to make a proper credits page :P"

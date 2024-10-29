@@ -18,6 +18,7 @@ config/icon="res://icon.png"
 [autoload]
 
 Gamesave="*res://assets/gamesave.gd"
+Music="*res://scenes/music/music.tscn"
 
 [display]
 

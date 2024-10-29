@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cs41fswm3lnnm"]
+[gd_scene load_steps=15 format=3 uid="uid://cs41fswm3lnnm"]
 
 [ext_resource type="Script" path="res://scenes/game/game.gd" id="1_o45cd"]
 [ext_resource type="PackedScene" uid="uid://c16e17mqh0vnx" path="res://entities/nian/nian.tscn" id="2_63crt"]
@@ -8,12 +8,36 @@
 [ext_resource type="PackedScene" uid="uid://dchdqjn3hrkcp" path="res://entities/dusk/dusk.tscn" id="5_el3ia"]
 [ext_resource type="PackedScene" uid="uid://cfdfvpi6bpii8" path="res://scenes/score/score.tscn" id="5_f1hal"]
 [ext_resource type="PackedScene" uid="uid://duvxrwr3fn0j1" path="res://scenes/end/end.tscn" id="6_2thgq"]
+[ext_resource type="Texture2D" uid="uid://ckkis8wtfr6te" path="res://scenes/game/sign1.png" id="6_tjn3o"]
+[ext_resource type="Texture2D" uid="uid://ydum0dthgndu" path="res://scenes/game/sign2.png" id="7_frbpt"]
+[ext_resource type="Texture2D" uid="uid://cpgr0qon6f2x6" path="res://scenes/game/sign3.png" id="8_tyv2t"]
+[ext_resource type="Texture2D" uid="uid://jvtaqhrmfeak" path="res://scenes/game/sign4.png" id="9_3eq1n"]
 
 [sub_resource type="Curve2D" id="Curve2D_ivs61"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 0, 0, -900, -2700, 0, 0, 3050, -1760)
 }
 point_count = 2
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_67rpi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_tjn3o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_frbpt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_tyv2t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_3eq1n")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
 
 [node name="Game" type="Node2D" node_paths=PackedStringArray("dragon_bean", "path", "path_follow", "tilemap", "camera", "score", "end_screen", "characters")]
 script = ExtResource("1_o45cd")
@@ -27,7 +51,7 @@ end_screen = NodePath("Camera2D/End")
 characters = NodePath("Map/Path2D/PathFollow2D/Characters")
 
 [node name="Map" parent="." instance=ExtResource("2_tehh8")]
-layer_0/tile_data = PackedInt32Array(589820, 5, 0, 589819, 1, 0, 524283, 1, 0, 655355, 5, 0, 589818, 1, 0, 524282, 1, 0, 655354, 1, 0, 458744, 4, 0, 524280, 4, 0, 589816, 4, 0, 589815, 4, 0, 458746, 1, 0, 393209, 4, 0, 393210, 4, 0, 655352, 1, 0, 589817, 1, 0, 720889, 1, 0, 655353, 1, 0, 524281, 1, 0, 458745, 4, 0, 720890, 1, 0, 458747, 5, 0, 720891, 5, 0, 655356, 5, 0, 786427, 5, 0, 786426, 5, 0)
+layer_0/tile_data = PackedInt32Array(589820, 2, 0, 589819, 1, 0, 655355, 5, 0, 589818, 1, 0, 655354, 1, 0, 589816, 4, 0, 589815, 4, 0, 655352, 1, 0, 589817, 1, 0, 720889, 1, 0, 655353, 1, 0, 720890, 1, 0, 720891, 5, 0, 655356, 5, 0, 786427, 5, 0, 786426, 5, 0, 524281, 4, 0, 524280, 4, 0, 524282, 4, 0)
 
 [node name="Path2D" type="Path2D" parent="Map"]
 z_index = 1
@@ -52,6 +76,14 @@ path_desired_distance = 0.1
 target_desired_distance = 0.1
 path_postprocessing = 1
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Map"]
+z_index = 1
+position = Vector2(550, 1890)
+scale = Vector2(1.56328, 1.56328)
+sprite_frames = SubResource("SpriteFrames_67rpi")
+autoplay = "default"
+frame_progress = 0.150074
+
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(610, 828.88)
 position_smoothing_enabled = true
@@ -70,7 +102,6 @@ color = Color(0.589308, 0.731429, 0.657971, 1)
 
 [node name="RevealTransition" parent="Camera2D" instance=ExtResource("4_1o788")]
 layer = 10
-visible = false
 
 [node name="Score" parent="Camera2D" instance=ExtResource("5_f1hal")]
 

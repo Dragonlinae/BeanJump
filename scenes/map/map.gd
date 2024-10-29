@@ -1,6 +1,7 @@
 extends TileMap
 
 @export var water_layer: TileMap = null
+@export var deco_layer: TileMap = null
 
 const directions = [0, 1, 0, -1, 0]
 
@@ -16,15 +17,32 @@ func _process(delta):
 func create_island(target_local_coord, dir):
   var next_dir = randi_range(0, 1) * 2 - 1
   var tile_pos = local_to_map(target_local_coord)
+  var deco_pos = tile_pos
   if dir == 1:
     tile_pos.x += randi_range(3, 5)
+    deco_pos.y -= randi_range(3, 5)
     for x in range(local_to_map(target_local_coord).x, tile_pos.x + 1):
       water_layer.set_cells_terrain_connect(0, [Vector2i(x, tile_pos.y)], 0, 1)
   else:
     tile_pos.y -= randi_range(3, 5)
+    deco_pos.x += randi_range(3, 5)
     for y in range(tile_pos.y, local_to_map(target_local_coord).y + 1):
       water_layer.set_cells_terrain_connect(0, [Vector2i(tile_pos.x, y)], 0, 1)
   
+  if randi_range(0, 100) < 20:
+    deco_layer.set_cells_terrain_connect(0, [deco_pos], 0, 1)
+  elif randi_range(0, 100) < 80:
+    var water_queue = [deco_pos]
+    for i in randi_range(1, 6):
+      var randind = randi_range(0, water_queue.size() - 1)
+      var current = water_queue[randind]
+      water_queue[randind] = water_queue[water_queue.size() - 1]
+      water_queue.pop_back()
+      water_layer.set_cells_terrain_connect(0, [current], 0, 1)
+      for j in range(4):
+        var next = current + Vector2i(directions[j], directions[j + 1])
+        water_queue.append(next)
+
   var end_tile = {"pos": tile_pos, "dir": next_dir}
 
   # island creation via bfs
@@ -35,6 +53,8 @@ func create_island(target_local_coord, dir):
     queue[randind] = queue[queue.size() - 1]
     queue.pop_back()
     set_cells_terrain_connect(0, [current], 0, 0)
+    if randi_range(0, 100) < 80:
+      deco_layer.set_cells_terrain_connect(0, [current], 0, 0)
 
     if next_dir == 1:
       if current.x > end_tile["pos"].x or (current.x == end_tile["pos"].x and current.y <= end_tile["pos"].y):

@@ -1,9 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://dgew1je8vd7ds"]
+[gd_scene load_steps=4 format=3 uid="uid://dgew1je8vd7ds"]
 
 [ext_resource type="TileSet" uid="uid://bqdrjndwp37u0" path="res://scenes/map/map.tres" id="1_67512"]
 [ext_resource type="Script" path="res://scenes/map/map.gd" id="2_wyfvh"]
+[ext_resource type="TileSet" uid="uid://cwcire3lm1xyd" path="res://scenes/map/deco/deco.tres" id="3_l856d"]
 
-[node name="Land" type="TileMap" node_paths=PackedStringArray("water_layer")]
+[node name="Land" type="TileMap" node_paths=PackedStringArray("water_layer", "deco_layer")]
 y_sort_enabled = true
 scale = Vector2(0.4, 0.4)
 tile_set = ExtResource("1_67512")
@@ -13,6 +14,7 @@ layer_0/y_sort_enabled = true
 layer_0/tile_data = PackedInt32Array(-1, 2, 0)
 script = ExtResource("2_wyfvh")
 water_layer = NodePath("Water")
+deco_layer = NodePath("Deco")
 
 [node name="Water" type="TileMap" parent="."]
 y_sort_enabled = true
@@ -20,3 +22,9 @@ tile_set = ExtResource("1_67512")
 format = 2
 layer_0/y_sort_enabled = true
 layer_0/y_sort_origin = -60
+
+[node name="Deco" type="TileMap" parent="."]
+y_sort_enabled = true
+tile_set = ExtResource("3_l856d")
+format = 2
+layer_0/y_sort_enabled = true

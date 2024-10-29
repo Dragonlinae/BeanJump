@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://2ufjvd2tp7u0"]
+
+[ext_resource type="AudioStream" uid="uid://bmlhegbq8j8kq" path="res://scenes/music/beanmusic.mp3" id="1_jgtye"]
+
+[node name="Music" type="AudioStreamPlayer"]
+stream = ExtResource("1_jgtye")

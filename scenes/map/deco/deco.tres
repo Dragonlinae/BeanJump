@@ -1,0 +1,124 @@
+[gd_resource type="TileSet" load_steps=23 format=3 uid="uid://cwcire3lm1xyd"]
+
+[ext_resource type="Texture2D" uid="uid://c8om37t23b0q" path="res://scenes/map/deco/flower1.png" id="1_etjj3"]
+[ext_resource type="Texture2D" uid="uid://jy7vyq8dgld" path="res://scenes/map/deco/flower2.png" id="2_byx2i"]
+[ext_resource type="Texture2D" uid="uid://dj11qwg3snwv6" path="res://scenes/map/deco/flower3.png" id="3_cndhs"]
+[ext_resource type="Texture2D" uid="uid://caxejhnmax13e" path="res://scenes/map/deco/grass1.png" id="4_n2kui"]
+[ext_resource type="Texture2D" uid="uid://cdsq7ugcmb4l1" path="res://scenes/map/deco/grass2.png" id="5_q5tgw"]
+[ext_resource type="Texture2D" uid="uid://br45ouarvjjls" path="res://scenes/map/deco/grass3.png" id="6_8ov3b"]
+[ext_resource type="Texture2D" uid="uid://c478ppulrn5uj" path="res://scenes/map/deco/kettle.png" id="7_7rfg3"]
+[ext_resource type="Texture2D" uid="uid://epqxt00xx6ex" path="res://scenes/map/deco/REED.png" id="8_wv8md"]
+[ext_resource type="Texture2D" uid="uid://cqrfb6obijww3" path="res://scenes/map/deco/shu.png" id="9_m4rbs"]
+[ext_resource type="Texture2D" uid="uid://dw8d3mtkqsoph" path="res://scenes/map/deco/suzu.png" id="10_c840t"]
+[ext_resource type="Texture2D" uid="uid://dvieqqiaiopp" path="res://scenes/map/deco/yoyo.png" id="11_ga6ro"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dkan3"]
+texture = ExtResource("1_etjj3")
+margins = Vector2i(235, 0)
+texture_region_size = Vector2i(610, 610)
+0:0/0 = 0
+0:0/0/terrain_set = 0
+0:0/0/terrain = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bc12v"]
+texture = ExtResource("2_byx2i")
+margins = Vector2i(230, 0)
+texture_region_size = Vector2i(610, 610)
+0:0/0 = 0
+0:0/0/terrain_set = 0
+0:0/0/terrain = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_eihp7"]
+texture = ExtResource("3_cndhs")
+margins = Vector2i(215, 0)
+texture_region_size = Vector2i(610, 610)
+0:0/0 = 0
+0:0/0/terrain_set = 0
+0:0/0/terrain = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_g5ygq"]
+texture = ExtResource("4_n2kui")
+margins = Vector2i(245, 125)
+texture_region_size = Vector2i(610, 610)
+0:0/0 = 0
+0:0/0/terrain_set = 0
+0:0/0/terrain = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_msk8q"]
+texture = ExtResource("5_q5tgw")
+margins = Vector2i(255, 170)
+texture_region_size = Vector2i(610, 610)
+0:0/0 = 0
+0:0/0/terrain_set = 0
+0:0/0/terrain = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lqqq3"]
+texture = ExtResource("6_8ov3b")
+margins = Vector2i(245, 115)
+texture_region_size = Vector2i(610, 610)
+0:0/0 = 0
+0:0/0/terrain_set = 0
+0:0/0/terrain = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_car50"]
+texture = ExtResource("7_7rfg3")
+margins = Vector2i(200, 195)
+texture_region_size = Vector2i(610, 610)
+0:0/0 = 0
+0:0/0/terrain_set = 0
+0:0/0/terrain = 1
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ifra2"]
+texture = ExtResource("8_wv8md")
+margins = Vector2i(205, 290)
+texture_region_size = Vector2i(610, 610)
+0:0/0 = 0
+0:0/0/terrain_set = 0
+0:0/0/terrain = 0
+0:0/0/probability = 0.3
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mlv0l"]
+texture = ExtResource("9_m4rbs")
+margins = Vector2i(200, 295)
+texture_region_size = Vector2i(610, 610)
+0:0/0 = 0
+0:0/0/terrain_set = 0
+0:0/0/terrain = 1
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rq5a5"]
+texture = ExtResource("10_c840t")
+margins = Vector2i(215, 160)
+texture_region_size = Vector2i(610, 610)
+0:0/0 = 0
+0:0/0/terrain_set = 0
+0:0/0/terrain = 0
+0:0/0/probability = 0.3
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_aln27"]
+texture = ExtResource("11_ga6ro")
+margins = Vector2i(220, 185)
+texture_region_size = Vector2i(610, 610)
+0:0/0 = 0
+0:0/0/terrain_set = 0
+0:0/0/terrain = 1
+
+[resource]
+tile_shape = 2
+tile_layout = 4
+tile_size = Vector2i(610, 176)
+terrain_set_0/mode = 2
+terrain_set_0/terrain_0/name = "LandDeco"
+terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
+terrain_set_0/terrain_1/name = "WaterDeco"
+terrain_set_0/terrain_1/color = Color(0.277502, 0.447165, 0.674598, 1)
+sources/45 = SubResource("TileSetAtlasSource_dkan3")
+sources/46 = SubResource("TileSetAtlasSource_bc12v")
+sources/47 = SubResource("TileSetAtlasSource_eihp7")
+sources/48 = SubResource("TileSetAtlasSource_g5ygq")
+sources/49 = SubResource("TileSetAtlasSource_msk8q")
+sources/50 = SubResource("TileSetAtlasSource_lqqq3")
+sources/51 = SubResource("TileSetAtlasSource_car50")
+sources/52 = SubResource("TileSetAtlasSource_ifra2")
+sources/53 = SubResource("TileSetAtlasSource_mlv0l")
+sources/54 = SubResource("TileSetAtlasSource_rq5a5")
+sources/55 = SubResource("TileSetAtlasSource_aln27")
